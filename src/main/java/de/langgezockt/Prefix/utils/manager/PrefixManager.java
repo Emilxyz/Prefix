@@ -4,6 +4,8 @@ import de.langgezockt.Prefix.Prefix;
 import de.langgezockt.Prefix.utils.CC;
 import de.langgezockt.Prefix.utils.ConfigurationService;
 import de.langgezockt.Prefix.utils.ItemBuilder;
+import de.langgezockt.Prefix.utils.PrefixInventory;
+import lombok.Getter;
 import org.bukkit.Material;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -30,12 +32,14 @@ public class PrefixManager {
     private File prefixFile;
     private FileConfiguration prefixConfig;
     private Map<String, String> prefixes;
+    @Getter private PrefixInventory prefixInventory;
 
     public PrefixManager(Prefix instance) {
         this.instance = instance;
         prefixFile = new File(instance.getDataFolder(), "prefix.yml");
         prefixConfig = YamlConfiguration.loadConfiguration(prefixFile);
         prefixes = new HashMap<>();
+        prefixInventory = new PrefixInventory(instance);
     }
 
     public void setDefaults() {
