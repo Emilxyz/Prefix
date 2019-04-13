@@ -32,6 +32,7 @@ public class Messages {
         this.messagesConfig.addDefault("Page.First", "&cYou are already on the first page");
         this.messagesConfig.addDefault("Page.Last", "&cYou are already on the last page");
         this.messagesConfig.addDefault("Prefix.Add", "&eYou &aadded &ethe prefix &b%name% &e(%prefix%&e)");
+        this.messagesConfig.addDefault("Prefix.Set", "&eYour prefix has been set to %prefix%");
         save();
     }
 
