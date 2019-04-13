@@ -18,6 +18,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 public class Prefix extends JavaPlugin {
 
     @Getter private static Prefix instance;
+    @Getter private ConfigurationService configurationService;
     @Getter private Messages messages;
     @Getter private PrefixManager prefixManager;
 
@@ -27,9 +28,7 @@ public class Prefix extends JavaPlugin {
 
         loadFiles();
 
-        if(ConfigurationService.MYSQL_ENABLED) {
-            loadMySQL();
-        }
+        loadMySQL();
 
         registerCommands();
         registerListener(Bukkit.getPluginManager());
@@ -54,6 +53,10 @@ public class Prefix extends JavaPlugin {
     }
 
     private void loadFiles() {
+        configurationService = new ConfigurationService(this);
+        configurationService.setDefaults();
+        configurationService.load();
+
         messages = new Messages(this);
         messages.setDefaults();
 
