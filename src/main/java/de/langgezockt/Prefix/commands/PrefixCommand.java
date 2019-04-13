@@ -36,7 +36,8 @@ public class PrefixCommand implements CommandExecutor {
         Player player = (Player) sender;
 
         if(args.length == 0) {
-            //TODO: prefix inventory
+            instance.getPrefixManager().getPrefixInventory().createInventories(player);
+            instance.getPrefixManager().getPrefixInventory().openFirstPage(player);
             return true;
         }
         if(args.length <= 2) {
