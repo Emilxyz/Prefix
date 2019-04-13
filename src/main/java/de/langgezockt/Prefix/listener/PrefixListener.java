@@ -56,6 +56,13 @@ public class PrefixListener implements Listener {
             return;
         }
 
+        if(event.getCurrentItem().getItemMeta().getDisplayName().startsWith(CC.DRED + "Reset Prefix")) {
+            PermissionUser permissionUser = PermissionsEx.getUser(player);
+            permissionUser.setPrefix(null, null);
+            player.sendMessage(instance.getMessages().get("Prefix.Reset"));
+            return;
+        }
+
         String name = ChatColor.stripColor(event.getCurrentItem().getItemMeta().getDisplayName());
         String prefix = instance.getPrefixManager().getPrefixes().get(name);
 
@@ -63,7 +70,7 @@ public class PrefixListener implements Listener {
         String rankPrefix = permissionUser.getGroups()[0].getPrefix();
 
         permissionUser.setPrefix(prefix + rankPrefix, null);
-        player.sendMessage(instance.getMessages().get("Prefix.Set").replaceAll("%prefix%", CC.translate(prefix + rankPrefix)));
+        player.sendMessage(instance.getMessages().get("Prefix.Set").replaceAll("%prefix%", CC.translate(permissionUser.getOwnPrefix())));
     }
 
 }
