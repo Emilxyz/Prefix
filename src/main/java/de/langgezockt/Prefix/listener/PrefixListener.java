@@ -60,6 +60,7 @@ public class PrefixListener implements Listener {
             PermissionUser permissionUser = PermissionsEx.getUser(player);
             permissionUser.setPrefix(null, null);
             player.sendMessage(instance.getMessages().get("Prefix.Reset"));
+            player.closeInventory();
             return;
         }
 
@@ -76,6 +77,7 @@ public class PrefixListener implements Listener {
 
         permissionUser.setPrefix(prefix + rankPrefix, null);
         player.sendMessage(instance.getMessages().get("Prefix.Set").replaceAll("%prefix%", CC.translate(permissionUser.getOwnPrefix())));
+        player.closeInventory();
     }
 
 }
