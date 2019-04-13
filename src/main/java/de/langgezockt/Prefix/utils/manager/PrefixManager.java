@@ -48,10 +48,8 @@ public class PrefixManager {
     public void loadPrefixes() {
         ConfigurationSection configurationSection = prefixConfig.getConfigurationSection("Prefixes");
         configurationSection.getValues(false).forEach((k, v) -> {
-            System.out.println(k + " | " + v);
             prefixes.put(k, CC.translate(prefixConfig.getString("Prefixes." + k + ".Prefix")));
         });
-        System.out.println(prefixes.toString());
     }
 
     public void save() {
