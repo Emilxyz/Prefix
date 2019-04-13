@@ -1,10 +1,13 @@
 main: de.langgezockt.Prefix.Prefix
 name: Prefix
-version: 1.7.2
+version: 1.7.4
 
 author: langgezockt
+
+depend: [PermisisonsEx]
 
 commands:
   prefix:
     description: manage prefixes
     usage: /prefix [ reload | add | remove] <name> <prefix>
+    aliases: [tag, tags]
