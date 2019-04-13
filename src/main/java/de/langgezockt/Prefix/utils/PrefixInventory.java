@@ -67,6 +67,7 @@ public class PrefixInventory {
             inventory.setItem(27, new ItemBuilder(Material.CARPET).setDisplayName(CC.DRED + "Previous Page").build());
             inventory.setItem(31, new ItemBuilder(Material.PAPER).setDisplayName(CC.DRED + "Page " +
                     CC.GRAY + "[" + pageIndex2+ "/" + neededInventories + "]").build());
+            inventory.setItem(34, new ItemBuilder(Material.REDSTONE_BLOCK).setDisplayName(CC.DRED + "Reset Prefix").build());
             inventory.setItem(35, new ItemBuilder(Material.CARPET).setDisplayName(CC.DRED + "Next Page").build());
             pageIndex2++;
         }
