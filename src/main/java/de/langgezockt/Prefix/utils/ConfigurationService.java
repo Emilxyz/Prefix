@@ -31,7 +31,7 @@ public class ConfigurationService {
     public void setDefaults() {
         this.config.options().copyDefaults(true);
         this.config.addDefault("Store-URL", "store.yourserver.com");
-
+        save();
     }
 
     public void load() {
