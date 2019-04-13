@@ -29,8 +29,6 @@ public class Prefix extends JavaPlugin {
 
         loadFiles();
 
-        loadMySQL();
-
         registerCommands();
         registerListener(Bukkit.getPluginManager());
 
@@ -42,10 +40,6 @@ public class Prefix extends JavaPlugin {
 
     private void registerListener(PluginManager pluginManager) {
         pluginManager.registerEvents(new PrefixListener(this), this);
-    }
-
-    private void loadMySQL() {
-
     }
 
     private void loadFiles() {
