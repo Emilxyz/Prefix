@@ -46,15 +46,15 @@ public class PrefixManager {
     }
 
     public void loadPrefixes() {
-        ConfigurationSection configurationSection = prefixConfig.getConfigurationSection("Prefixes");
+        ConfigurationSection configurationSection = this.prefixConfig.getConfigurationSection("Prefixes");
         configurationSection.getValues(false).forEach((k, v) -> {
-            prefixes.put(k, CC.translate(prefixConfig.getString("Prefixes." + k + ".Prefix")));
+            prefixes.put(k, CC.translate(this.prefixConfig.getString("Prefixes." + k + ".Prefix")));
         });
     }
 
     public void save() {
         try {
-            prefixConfig.save(prefixFile);
+            this.prefixConfig.save(this.prefixFile);
         } catch (IOException e) {
             instance.getLogger().warning("Failed to save prefix.yml stacktrace below: " + e.getMessage());
             e.printStackTrace();
