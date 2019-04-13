@@ -69,6 +69,11 @@ public class PrefixCommand implements CommandExecutor {
 
             String name = args[1];
 
+            if(!(instance.getPrefixManager().getPrefixes().containsKey(name))) {
+                player.sendMessage(instance.getMessages().get("Prefix.Not-Exists"));
+                return true;
+            }
+
             instance.getPrefixManager().removePrefix(name);
             player.sendMessage(instance.getMessages().get("Prefix.Remove").replaceAll("%name%", name));
             return true;
@@ -91,6 +96,11 @@ public class PrefixCommand implements CommandExecutor {
 
         String prefix = StringUtils.join(args, " ", 2, args.length);
         String name = args[1];
+
+        if(instance.getPrefixManager().getPrefixes().containsKey(name)) {
+            player.sendMessage(instance.getMessages().get("Prefix.Exists"));
+            return true;
+        }
 
         instance.getPrefixManager().addPrefix(name, prefix);
         player.sendMessage(instance.getMessages().get("Prefix.Add")
