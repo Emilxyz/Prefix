@@ -28,6 +28,7 @@ public class Messages {
     public void setDefaults() {
         this.messagesConfig.options().copyDefaults(true);
         this.messagesConfig.addDefault("No-Permissions", "&cYou don't have permissions to execute this command.");
+        this.messagesConfig.addDefault("No-Prefix-Permissions", "&cYou don't have permissions to use this prefix.");
         this.messagesConfig.addDefault("Player-Only", "&cThis is a player only command.");
         this.messagesConfig.addDefault("Page.First", "&cYou are already on the first page");
         this.messagesConfig.addDefault("Page.Last", "&cYou are already on the last page");
