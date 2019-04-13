@@ -49,7 +49,7 @@ public class PrefixCommand implements CommandExecutor {
             return true;
         }
 
-        String prefix = StringUtils.join(args, " ", 3, args.length);
+        String prefix = StringUtils.join(args, " ", 2, args.length);
         String name = args[1];
 
         instance.getPrefixManager().addPrefix(name, prefix);
