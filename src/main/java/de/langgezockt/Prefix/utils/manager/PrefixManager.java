@@ -54,6 +54,12 @@ public class PrefixManager {
         save();
     }
 
+    public void removePrefix(String name) {
+        this.prefixConfig.set("Prefixes." + name, null);
+        prefixes.remove(name);
+        save();
+    }
+
     public void loadPrefixes() {
         ConfigurationSection configurationSection = this.prefixConfig.getConfigurationSection("Prefixes");
         configurationSection.getValues(false).forEach((k, v) -> {
