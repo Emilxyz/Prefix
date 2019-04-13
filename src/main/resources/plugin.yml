@@ -1,10 +1,10 @@
 main: de.langgezockt.Prefix.Prefix
 name: Prefix
-version: 1.7.4
+version: 1.7.5
 
 author: langgezockt
 
-depend: [PermisisonsEx]
+depend: [PermissionsEx]
 
 commands:
   prefix:
