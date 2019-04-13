@@ -37,6 +37,8 @@ public class Messages {
         this.messagesConfig.addDefault("Prefix.Reload", "&eYou &asuccessfully &ereloaded all prefixes.");
         this.messagesConfig.addDefault("Prefix.Set", "&eYour prefix has been set to %prefix%");
         this.messagesConfig.addDefault("Prefix.Reset", "&eYour prefix has been reset.");
+        this.messagesConfig.addDefault("Prefix.Exists", "&cThat prefix already exists.");
+        this.messagesConfig.addDefault("Prefix.Not-Exists", "&cThat prefix does not exist.");
         save();
     }
 
