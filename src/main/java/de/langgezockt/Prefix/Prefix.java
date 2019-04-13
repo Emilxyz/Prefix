@@ -1,6 +1,7 @@
 package de.langgezockt.Prefix;
 
 import de.langgezockt.Prefix.commands.PrefixCommand;
+import de.langgezockt.Prefix.listener.PrefixListener;
 import de.langgezockt.Prefix.utils.ConfigurationService;
 import de.langgezockt.Prefix.utils.Messages;
 import de.langgezockt.Prefix.utils.manager.PrefixManager;
@@ -35,17 +36,12 @@ public class Prefix extends JavaPlugin {
 
     }
 
-    @Override
-    public void onDisable() {
-        //TODO: disconnect mysql
-    }
-
     private void registerCommands() {
         getCommand("prefix").setExecutor(new PrefixCommand(this));
     }
 
     private void registerListener(PluginManager pluginManager) {
-
+        pluginManager.registerEvents(new PrefixListener(this), this);
     }
 
     private void loadMySQL() {
