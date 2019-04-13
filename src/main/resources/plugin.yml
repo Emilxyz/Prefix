@@ -1,10 +1,10 @@
 main: de.langgezockt.Prefix.Prefix
 name: Prefix
-version: 1.3.1
+version: 1.4.2
 
 author: langgezockt
 
 commands:
   prefix:
     description: manage prefixes
-    usage: /prefix [add | remove] <name> <prefix>
+    usage: /prefix [ reload | add | remove] <name> <prefix>
