@@ -33,8 +33,6 @@ public class PrefixManager {
 
     public void setDefaults() {
         this.prefixConfig.options().copyDefaults(true);
-        this.prefixConfig.addDefault("Prefixes.Name.Prefix", "&7[&cExample&7]");
-        this.prefixConfig.addDefault("Prefixes.Name.Permission", "prefix.example");
         save();
     }
 
