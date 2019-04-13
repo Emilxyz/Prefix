@@ -31,7 +31,7 @@ public class PrefixManager {
     private Prefix instance;
     private File prefixFile;
     private FileConfiguration prefixConfig;
-    private Map<String, String> prefixes;
+    @Getter private Map<String, String> prefixes;
     @Getter private PrefixInventory prefixInventory;
 
     public PrefixManager(Prefix instance) {
@@ -50,14 +50,14 @@ public class PrefixManager {
     public void addPrefix(String name, String prefix) {
         this.prefixConfig.set("Prefixes." + name + ".Prefix", prefix);
         this.prefixConfig.set("Prefixes." + name + ".Permission", "prefix." + name);
-        prefixes.put(name, CC.translate(prefix));
+        prefixes.put(name, prefix);
         save();
     }
 
     public void loadPrefixes() {
         ConfigurationSection configurationSection = this.prefixConfig.getConfigurationSection("Prefixes");
         configurationSection.getValues(false).forEach((k, v) -> {
-            prefixes.put(k, CC.translate(this.prefixConfig.getString("Prefixes." + k + ".Prefix")));
+            prefixes.put(k, this.prefixConfig.getString("Prefixes." + k + ".Prefix"));
         });
     }
 
@@ -66,15 +66,19 @@ public class PrefixManager {
         ConfigurationSection configurationSection = this.prefixConfig.getConfigurationSection("Prefixes");
         configurationSection.getValues(false).forEach((k, v) -> {
             if(player.hasPermission(this.prefixConfig.getString("Prefixes." + k + ".Permission"))) {
-                ItemStack itemStack = new ItemBuilder(Material.NAME_TAG).setDisplayName(CC.translate(this.prefixConfig.getString("Prefixes." + k + ".Prefix")))
+                ItemStack itemStack = new ItemBuilder(Material.NAME_TAG).setDisplayName(CC.RED + k)
                         .setLore(CC.MENU_BAR,
                                 CC.GRAY + "Click here to use the " + CC.RED + k + CC.GRAY + " prefix.",
+                                " ",
+                                CC.GRAY + "Displays as: " + CC.translate(this.prefixConfig.getString("Prefixes." + k + ".Prefix")),
                                 CC.MENU_BAR).build();
                 list.add(itemStack);
             } else {
-                ItemStack itemStack = new ItemBuilder(Material.NAME_TAG).setDisplayName(CC.translate(this.prefixConfig.getString("Prefixes." + k + ".Prefix")))
+                ItemStack itemStack = new ItemBuilder(Material.NAME_TAG).setDisplayName(CC.RED + k)
                         .setLore(CC.MENU_BAR,
                                 CC.GRAY + "Buy this prefix at: " + CC.RED + ConfigurationService.STORE_URL + CC.GRAY + ".",
+                                " ",
+                                CC.GRAY + "Displays as: " + CC.translate(this.prefixConfig.getString("Prefixes." + k + ".Prefix")),
                                 CC.MENU_BAR).build();
                 list.add(itemStack);
             }
