@@ -1,5 +1,5 @@
 # Prefix
-Since a lot of peapole used a leaked version of my prefix plugin I decided to redcode the old version and publish the source of the new one.
+Since a lot of peapole used a leaked version of my prefix plugin I decided to recode the old version and publish the source of the new one.
 
 # Features
 - Supports PermissionsEx v1.22.10
