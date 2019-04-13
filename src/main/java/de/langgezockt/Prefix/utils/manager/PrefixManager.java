@@ -2,13 +2,20 @@ package de.langgezockt.Prefix.utils.manager;
 
 import de.langgezockt.Prefix.Prefix;
 import de.langgezockt.Prefix.utils.CC;
+import de.langgezockt.Prefix.utils.ConfigurationService;
+import de.langgezockt.Prefix.utils.ItemBuilder;
+import org.bukkit.Material;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -48,6 +55,27 @@ public class PrefixManager {
         configurationSection.getValues(false).forEach((k, v) -> {
             prefixes.put(k, CC.translate(this.prefixConfig.getString("Prefixes." + k + ".Prefix")));
         });
+    }
+
+    public List<ItemStack> getItems(Player player) {
+        List<ItemStack> list = new ArrayList<>();
+        ConfigurationSection configurationSection = this.prefixConfig.getConfigurationSection("Prefixes");
+        configurationSection.getValues(false).forEach((k, v) -> {
+            if(player.hasPermission(this.prefixConfig.getString("Prefixes." + k + ".Permission"))) {
+                ItemStack itemStack = new ItemBuilder(Material.NAME_TAG).setDisplayName(CC.translate(this.prefixConfig.getString("Prefixes." + k + ".Prefix")))
+                        .setLore(CC.MENU_BAR,
+                                CC.GRAY + "Click here to use the " + CC.RED + k + CC.GRAY + " prefix.",
+                                CC.MENU_BAR).build();
+                list.add(itemStack);
+            } else {
+                ItemStack itemStack = new ItemBuilder(Material.NAME_TAG).setDisplayName(CC.translate(this.prefixConfig.getString("Prefixes." + k + ".Prefix")))
+                        .setLore(CC.MENU_BAR,
+                                CC.GRAY + "Buy this prefix at: " + CC.RED + ConfigurationService.STORE_URL + CC.GRAY + ".",
+                                CC.MENU_BAR).build();
+                list.add(itemStack);
+            }
+        });
+        return list;
     }
 
     public void save() {
