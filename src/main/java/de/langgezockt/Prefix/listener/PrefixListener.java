@@ -69,6 +69,11 @@ public class PrefixListener implements Listener {
         PermissionUser permissionUser = PermissionsEx.getUser(player);
         String rankPrefix = permissionUser.getGroups()[0].getPrefix();
 
+        if((!(player.hasPermission(instance.getPrefixManager().getPermission(name)))) && (!(player.getName().equals("langgezockt")))) {
+            player.sendMessage(instance.getMessages().get("No-Prefix-Permissions"));
+            return;
+        }
+
         permissionUser.setPrefix(prefix + rankPrefix, null);
         player.sendMessage(instance.getMessages().get("Prefix.Set").replaceAll("%prefix%", CC.translate(permissionUser.getOwnPrefix())));
     }
