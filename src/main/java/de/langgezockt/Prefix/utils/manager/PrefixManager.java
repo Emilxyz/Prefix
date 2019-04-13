@@ -1,6 +1,7 @@
 package de.langgezockt.Prefix.utils.manager;
 
 import de.langgezockt.Prefix.Prefix;
+import de.langgezockt.Prefix.utils.CC;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -32,15 +33,15 @@ public class PrefixManager {
 
     public void setDefaults() {
         this.prefixConfig.options().copyDefaults(true);
-        this.prefixConfig.addDefault("Name.Prefix", "&7[&cExample&7]");
-        this.prefixConfig.addDefault("Name.Permission", "prefix.example");
+        this.prefixConfig.addDefault("Prefixes.Name.Prefix", "&7[&cExample&7]");
+        this.prefixConfig.addDefault("Prefixes.Name.Permission", "prefix.example");
         save();
     }
 
     public void addPrefix(String name, String prefix) {
         this.prefixConfig.set("Prefixes." + name + ".Prefix", prefix);
         this.prefixConfig.set("Prefixes." + name + ".Permission", "prefix." + name);
-        prefixes.put(name, prefix);
+        prefixes.put(name, CC.translate(prefix));
         save();
     }
 
@@ -48,7 +49,7 @@ public class PrefixManager {
         ConfigurationSection configurationSection = prefixConfig.getConfigurationSection("Prefixes");
         configurationSection.getValues(false).forEach((k, v) -> {
             System.out.println(k + " | " + v);
-            prefixes.put(k, prefixConfig.getString("Prefixes." + k + ".Prefix"));
+            prefixes.put(k, CC.translate(prefixConfig.getString("Prefixes." + k + ".Prefix")));
         });
         System.out.println(prefixes.toString());
     }
