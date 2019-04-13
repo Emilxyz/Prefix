@@ -92,6 +92,10 @@ public class PrefixManager {
         return list;
     }
 
+    public String getPermission(String name) {
+        return this.prefixConfig.getString("Prefixes." + name + ".Permission");
+    }
+
     public void save() {
         try {
             this.prefixConfig.save(this.prefixFile);
