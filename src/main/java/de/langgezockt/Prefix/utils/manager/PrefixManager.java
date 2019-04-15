@@ -62,6 +62,9 @@ public class PrefixManager {
 
     public void loadPrefixes() {
         ConfigurationSection configurationSection = this.prefixConfig.getConfigurationSection("Prefixes");
+        if(configurationSection == null) {
+            return;
+        }
         configurationSection.getValues(false).forEach((k, v) -> {
             prefixes.put(k, this.prefixConfig.getString("Prefixes." + k + ".Prefix"));
         });
@@ -70,6 +73,9 @@ public class PrefixManager {
     public List<ItemStack> getItems(Player player) {
         List<ItemStack> list = new ArrayList<>();
         ConfigurationSection configurationSection = this.prefixConfig.getConfigurationSection("Prefixes");
+        if(configurationSection == null) {
+            return list;
+        }
         configurationSection.getValues(false).forEach((k, v) -> {
             if(player.hasPermission(this.prefixConfig.getString("Prefixes." + k + ".Permission"))) {
                 ItemStack itemStack = new ItemBuilder(Material.NAME_TAG).setDisplayName(CC.RED + k)
